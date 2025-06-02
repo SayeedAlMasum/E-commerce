@@ -1,5 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
+﻿// Login.cshtml.cs
 #nullable disable
 
 using System;
@@ -126,7 +125,7 @@ namespace E_commerce.Areas.Identity.Pages.Account
                     _logger.LogWarning("User account locked out.");
                     return RedirectToPage("./Lockout");
                 }
-                else 
+                else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
