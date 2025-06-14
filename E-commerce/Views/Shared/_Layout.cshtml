@@ -1,5 +1,4 @@
-﻿﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -144,10 +143,8 @@
 							<!--/main-menu -->
 						</nav>
 						<div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-end">
-
 							<a class="phone_top" href="tel://9438843343"><strong><span>Need Help?</span>+94 423-23-221</strong></a>
 						</div>
-
 					</div>
 					<!-- /row -->
 				</div>
@@ -276,26 +273,49 @@
 								</li>
 								<li>
 									<div class="dropdown dropdown-access">
-										<a asp-area="Identity" asp-page="/Account/Login" class="access_link"><span>Account</span></a>
-										<div class="dropdown-menu">
-											@* <a href="account.html" class="btn_1">Sign In or Sign Up</a> *@
-											<a asp-area="Identity" asp-page="/Account/Login" class="btn_1">Sign in</a>
-											<a asp-area="Identity" asp-page="/Account/Register" class="btn_1 mt-1">Sign up</a>
-											<ul>
-												<li>
-													<a href="track-order.html"><i class="ti-truck"></i>Track your Order</a>
-												</li>
-												<li>
-													<a href="my-orders.html"><i class="ti-package"></i>My Orders</a>
-												</li>
-												<li>
-													<a href="profile-page.html"><i class="ti-user"></i>My Profile</a>
-												</li>
-												<li>
-													<a href="help.html"><i class="ti-help-alt"></i>Help and Faq</a>
-												</li>
-											</ul>
-										</div>
+										@if (User.Identity.IsAuthenticated)
+										{
+											<a href="#" class="access_link"><span>@User.Identity.Name</span></a>
+											<div class="dropdown-menu">
+												<ul>
+													<li>
+														<a href="track-order.html"><i class="ti-truck"></i>Track your Order</a>
+													</li>
+													<li>
+														<a href="my-orders.html"><i class="ti-package"></i>My Orders</a>
+													</li>
+													<li>
+														<a href="profile-page.html"><i class="ti-user"></i>My Profile</a>
+													</li>
+													<li>
+														<form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post">
+															<button type="submit" class="btn btn-link" style="padding: 0; border: none; background: none;">
+																<i class="ti-power-off"></i>Logout
+															</button>
+														</form>
+													</li>
+												</ul>
+											</div>
+										}
+										else
+										{
+											<a asp-area="Identity" asp-page="/Account/Login" class="access_link"><span>Account</span></a>
+											<div class="dropdown-menu">
+												<a asp-area="Identity" asp-page="/Account/Login" class="btn_1">Sign in</a>
+												<a asp-area="Identity" asp-page="/Account/Register" class="btn_1 mt-1">Sign up</a>
+												<ul>
+													<li>
+														<a href="track-order.html"><i class="ti-truck"></i>Track your Order</a>
+													</li>
+													<li>
+														<a href="my-orders.html"><i class="ti-package"></i>My Orders</a>
+													</li>
+													<li>
+														<a href="help.html"><i class="ti-help-alt"></i>Help and Faq</a>
+													</li>
+												</ul>
+											</div>
+										}
 									</div>
 									<!-- /dropdown-access-->
 								</li>
